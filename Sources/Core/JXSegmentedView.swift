@@ -155,7 +155,11 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         }
     }
     open weak var delegate: JXSegmentedViewDelegate?
-    open var bringSubviewToFront: Bool = false
+    open var bringSubviewToFront: Bool = false {
+        didSet {
+            collectionView?.bringSubviewToFront = bringSubviewToFront
+        }
+    }
     open private(set) var collectionView: JXSegmentedCollectionView!
     open var contentScrollView: UIScrollView? {
         willSet {
