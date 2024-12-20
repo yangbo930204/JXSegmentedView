@@ -9,6 +9,7 @@
 import UIKit
 
 open class JXSegmentedCollectionView: UICollectionView {
+    var bringSubviewToFront: Bool = false
 
     open var indicators = [JXSegmentedIndicatorProtocol]() {
         willSet {
@@ -23,15 +24,18 @@ open class JXSegmentedCollectionView: UICollectionView {
         }
     }
 
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         for indicator in indicators {
-            sendSubviewToBack(indicator)
+            if bringSubviewToFront {
+                bringSubviewToFront(indicator)
+            } else {
+                sendSubviewToBack(indicator)
+            }
             if let backgroundView = backgroundView {
                 sendSubviewToBack(backgroundView)
             }
         }
     }
-
 }

@@ -155,6 +155,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         }
     }
     open weak var delegate: JXSegmentedViewDelegate?
+    open var bringSubviewToFront: Bool = false
     open private(set) var collectionView: JXSegmentedCollectionView!
     open var contentScrollView: UIScrollView? {
         willSet {
@@ -221,6 +222,7 @@ open class JXSegmentedView: UIView, JXSegmentedViewRTLCompatible {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView = JXSegmentedCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.bringSubviewToFront = bringSubviewToFront
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
